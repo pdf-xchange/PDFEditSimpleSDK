@@ -1,0 +1,180 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_PXCVIEW36_SAMPLE_APP ICON                    "PDFXEditSimple_app.ico"
+IDI_SMALL               ICON                    "small.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_PXCVIEW36_SAMPLE_APP MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open\tCtrl+O",               ID_FILE_OPEN
+        MENUITEM "&Close",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Print...",                    ID_FILE_PRINT
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit\tAlt+X",                IDM_EXIT
+    END
+    POPUP "Actions"
+    BEGIN
+        MENUITEM "&First page\tCtrl+Home",      ID_ACTIONS_FIRSTPAGE
+        MENUITEM "&Previous page\tCtrl+PgUp",   ID_ACTIONS_PREVIOUSPAGE
+        MENUITEM "&Next page\tCtrl+PgDown",     ID_ACTIONS_NEXTPAGE
+        MENUITEM "&Last page\tCtrl+End",        ID_ACTIONS_LASTPAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Actual size\tCtrl+'Num*'",   ID_ACTIONS_ACTUALSIZE
+        MENUITEM "Zoom &In\tCtrl+'Num+'",       ID_ACTIONS_ZOOMIN
+        MENUITEM "Zoom &Out\tCtrl+'Num-'",      ID_ACTIONS_ZOOMOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_PXCVIEW36_SAMPLE_APP ACCELERATORS 
+BEGIN
+    "/",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    VK_ADD,         ID_ACTIONS_ZOOMIN,      VIRTKEY, NOINVERT
+    VK_ADD,         ID_ACTIONS_ZOOMIN,      VIRTKEY, CONTROL, NOINVERT
+    VK_END,         ID_ACTIONS_LASTPAGE,    VIRTKEY, NOINVERT
+    VK_END,         ID_ACTIONS_LASTPAGE,    VIRTKEY, CONTROL, NOINVERT
+    VK_HOME,        ID_ACTIONS_FIRSTPAGE,   VIRTKEY, NOINVERT
+    VK_HOME,        ID_ACTIONS_FIRSTPAGE,   VIRTKEY, CONTROL, NOINVERT
+    VK_MULTIPLY,    ID_ACTIONS_ACTUALSIZE,  VIRTKEY, CONTROL, NOINVERT
+    VK_NEXT,        ID_ACTIONS_NEXTPAGE,    VIRTKEY, NOINVERT
+    VK_NEXT,        ID_ACTIONS_NEXTPAGE,    VIRTKEY, CONTROL, NOINVERT
+    VK_PRIOR,       ID_ACTIONS_PREVIOUSPAGE, VIRTKEY, NOINVERT
+    VK_PRIOR,       ID_ACTIONS_PREVIOUSPAGE, VIRTKEY, CONTROL, NOINVERT
+    VK_SUBTRACT,    ID_ACTIONS_ZOOMOUT,     VIRTKEY, NOINVERT
+    VK_SUBTRACT,    ID_ACTIONS_ZOOMOUT,     VIRTKEY, CONTROL, NOINVERT
+    "X",            IDM_EXIT,               VIRTKEY, ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PASSWORD_DLG DIALOGEX 22, 17, 150, 41
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_CAPTION
+CAPTION "Enter password"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_PWD,5,6,138,12,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,41,24,32,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,77,24,32,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PASSWORD_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 143
+        BOTTOMMARGIN, 38
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "PDF-XChange Editor Simple SDK Sample App"
+    IDC_PXCVIEW36_SAMPLE_APP "PDFXEDITSIMPLE__APP"
+    IDC_PXCVIEW36_SAMPLE_APP_CHILD "PDFXEDITSIMPLE_SAMPLE_APP_CHILD"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
