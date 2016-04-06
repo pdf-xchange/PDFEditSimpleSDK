@@ -5,7 +5,7 @@
 }
 
 
-unit PXView_36;
+unit PDFXEditSimple;
 
 interface
 
@@ -59,43 +59,47 @@ Const
 	pxvrpf_UseVectorRenderer		=	$04;
 	pxvrpf_RenderAsGray 				= 	$08;
 
-
+{$IFDEF WIN64}
+  Const DLLName = 'PDFXEditSimple.x64.dll';
+{$ELSE}
+  Const DLLName = 'PDFXEditSimple.x86.dll';
+{$ENDIF}
 
 	////////////////////////////////////////////////////////////////////////
 	// IMPORTED FUNCTIONS
-	function PXCV_Init (pDoc :LPPXVDocument; key, DevCode:PAnsiChar):HRESULT;stdcall;external 'pxcview.dll';
+	function PXCV_Init (pDoc :LPPXVDocument; key, DevCode:PAnsiChar):HRESULT;stdcall;external DLLName;
 	// Deinitialize PDF Object
-	function PXCV_Delete (pDoc :PXVDocument):HRESULT;stdcall;external 'pxcview.dll';
+	function PXCV_Delete (pDoc :PXVDocument):HRESULT;stdcall;external DLLName;
 	// Set callback function
-	function PXCV_SetCallBack (pDoc :PXVDocument; pProc: PXV36_CALLBACK_FUNC; UserData: LParam):HRESULT;stdcall;external 'pxcview.dll';
+	function PXCV_SetCallBack (pDoc :PXVDocument; pProc: PXV36_CALLBACK_FUNC; UserData: LParam):HRESULT;stdcall;external DLLName;
 	// Read document
-	function PXCV_ReadDocumentW(pDoc :PXVDocument; pwFileName: PWChar; Flags: DWORD):HRESULT;stdcall;external 'pxcview.dll';
+	function PXCV_ReadDocumentW(pDoc :PXVDocument; pwFileName: PWChar; Flags: DWORD):HRESULT;stdcall;external DLLName;
 	// Check the password for encrypted document
-	function PXCV_CheckPassword(pDoc :PXVDocument; pPassword: PByte; PassLen: DWORD):HRESULT;stdcall;external 'pxcview.dll';
+	function PXCV_CheckPassword(pDoc :PXVDocument; pPassword: PByte; PassLen: DWORD):HRESULT;stdcall;external DLLName;
 	// Continue reading document after checking password
-	function PXCV_FinishReadDocument(pDoc :PXVDocument; Flags: DWORD):HRESULT;stdcall;external 'pxcview.dll';
+	function PXCV_FinishReadDocument(pDoc :PXVDocument; Flags: DWORD):HRESULT;stdcall;external DLLName;
 
-	function PXCV_GetPagesCount(pDoc :PXVDocument; count: PDWORD):HRESULT;stdcall;external 'pxcview.dll';
+	function PXCV_GetPagesCount(pDoc :PXVDocument; count: PDWORD):HRESULT;stdcall;external DLLName;
 
-	function PXCV_GetPageDimensions(pDoc :PXVDocument; page_num: DWORD; width, height: PDouble):HRESULT;stdcall;external 'pxcview.dll';
+	function PXCV_GetPageDimensions(pDoc :PXVDocument; page_num: DWORD; width, height: PDouble):HRESULT;stdcall;external DLLName;
 
-	function PXCV_GetPageRotation(pDoc :PXVDocument; page_num: DWORD; angle: PLong):HRESULT;stdcall;external 'pxcview.dll';
+	function PXCV_GetPageRotation(pDoc :PXVDocument; page_num: DWORD; angle: PLong):HRESULT;stdcall;external DLLName;
 
-	function PXCV_DrawPageToDC(pDoc :PXVDocument; page_num: DWORD; _hDC: HDC; pParams: LPPXV_CommonRenderParameters):HRESULT;stdcall;external 'pxcview.dll';
+	function PXCV_DrawPageToDC(pDoc :PXVDocument; page_num: DWORD; _hDC: HDC; pParams: LPPXV_CommonRenderParameters):HRESULT;stdcall;external DLLName;
 
 	function PXCV_DrawPageToDIBSection(pDoc :PXVDocument; page_num: DWORD; pParams: LPPXV_CommonRenderParameters;
 										hBaseDC: HDC; backcolor: COLORREF; pResDIBSection: PHBitmap;
-										hSection: THandle; dwOffset: DWORD):HRESULT;stdcall;external 'pxcview.dll';
+										hSection: THandle; dwOffset: DWORD):HRESULT;stdcall;external DLLName;
 
-	function PXCV_ReleasePageCachedData(pDoc :PXVDocument; page_num, dwFlags: DWORD):HRESULT;stdcall;external 'pxcview.dll';
+	function PXCV_ReleasePageCachedData(pDoc :PXVDocument; page_num, dwFlags: DWORD):HRESULT;stdcall;external DLLName;
 
-	function PXCV_ReleaseCachedData(pDoc :PXVDocument; dwFlags: DWORD):HRESULT;stdcall;external 'pxcview.dll';
+	function PXCV_ReleaseCachedData(pDoc :PXVDocument; dwFlags: DWORD):HRESULT;stdcall;external DLLName;
 
 
 
-	function PXCV_Err_FormatSeverity (errcode: HRESULT; buf: PAnsiChar; maxlen: LONG):LONG; stdcall;external 'pxcview.dll';
-	function PXCV_Err_FormatFacility (errcode: HRESULT; buf: PAnsiChar; maxlen: LONG):LONG; stdcall;external 'pxcview.dll';
-	function PXCV_Err_FormatErrorCode(errcode: HRESULT; buf: PAnsiChar; maxlen: LONG):LONG; stdcall;external 'pxcview.dll';
+	function PXCV_Err_FormatSeverity (errcode: HRESULT; buf: PAnsiChar; maxlen: LONG):LONG; stdcall;external DLLName;
+	function PXCV_Err_FormatFacility (errcode: HRESULT; buf: PAnsiChar; maxlen: LONG):LONG; stdcall;external DLLName;
+	function PXCV_Err_FormatErrorCode(errcode: HRESULT; buf: PAnsiChar; maxlen: LONG):LONG; stdcall;external DLLName;
 
 Const
 	//Error codes
