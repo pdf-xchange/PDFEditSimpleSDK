@@ -1,6 +1,6 @@
 {
 	-----------------------------
-	PDFXView 3.6 library wrapper
+	PDFXEditSimple 6 library wrapper
 	-----------------------------
 }
 
