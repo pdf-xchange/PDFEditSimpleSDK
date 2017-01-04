@@ -1,6 +1,6 @@
 Imports System.Runtime.InteropServices
 
-Public Class PXCE_Lib
+Module PXCE_Lib
 	Enum PXV36_CallbackStage
 		PXCVClb_Start = 1
 		PXCVClb_Processing
@@ -38,66 +38,65 @@ Public Class PXCE_Lib
 	End Structure
 
 #If Win64 Then
-	Public Declare Function PXCV_Init Lib "PDFXEditSimple.x64" (ByRef Doc As Integer, ByVal Key As String, ByVal DevCode As String) As Integer
-	' Deinitialize PDF Object
-	Public Declare Function PXCV_Delete Lib "PDFXEditSimple.x64" (ByVal Doc As Integer) As Integer
-	' Set callback function
-	Public Declare Function PXCV_SetCallBack Lib "PDFXEditSimple.x64" (ByVal Doc As Integer, ByVal pProc As Integer, ByVal UserData As Integer) As Integer
-	' Read document
-	Public Declare Function PXCV_ReadDocumentW Lib "PDFXEditSimple.x64" (ByVal Doc As Integer, <MarshalAs(UnmanagedType.LPWStr)> ByVal fname As String, ByVal flags As Integer) As Integer
-	' Check the password for encrypted document
-	Public Declare Function PXCV_CheckPassword Lib "PDFXEditSimple.x64" (ByVal Doc As Integer, ByVal password() As Byte, ByVal passlen As Integer) As Integer
-	' Continue reading document after checking password
-	Public Declare Function PXCV_FinishReadDocument Lib "PDFXEditSimple.x64" (ByVal Doc As Integer, ByVal flags As Integer) As Integer
-
-	Public Declare Function PXCV_GetPagesCount Lib "PDFXEditSimple.x64" (ByVal Doc As Integer, ByRef count As Integer) As Integer
-
-	Public Declare Function PXCV_GetPageDimensions Lib "PDFXEditSimple.x64" (ByVal Doc As Integer, ByVal page_num As Integer, ByRef width As Double, ByRef height As Double) As Integer
-
-	Public Declare Function PXCV_GetPageRotation Lib "PDFXEditSimple.x64" (ByVal Doc As Integer, ByVal page_num As Integer, ByRef angle As Integer) As Integer
-
-	Public Declare Function PXCV_DrawPageToDC Lib "PDFXEditSimple.x64" (ByVal Doc As Integer, ByVal page_num As Integer, ByVal hdc As IntPtr, ByRef parameters As PXV_CommonRenderParameters) As Integer
-
-	Public Declare Function PXCV_DrawPageToDIBSection Lib "PDFXEditSimple.x64" (ByVal Doc As Integer, ByVal page_num As Integer, ByRef parameters As PXV_CommonRenderParameters, ByVal hBaseDC As Integer, ByVal backcolor As Integer, ByRef pResDIBSection As Integer, ByVal hSection As Integer, ByVal dwOffset As Integer) As Integer
-
-	Public Declare Function PXCV_ReleasePageCachedData Lib "PDFXEditSimple.x64" (ByVal Doc As Integer, ByVal page_num As Integer, ByVal flags As Integer) As Integer
-
-	Public Declare Function PXCV_ReleaseCachedData Lib "PDFXEditSimple.x64" (ByVal Doc As Integer, ByVal flags As Integer) As Integer
-	' Error descriptions API
-	Public Declare Function PXCV_Err_FormatSeverity Lib "PDFXEditSimple.x64" (ByVal errorcode As Integer, ByVal buf() As Byte, ByVal maxlen As Integer) As Integer
-	Public Declare Function PXCV_Err_FormatFacility Lib "PDFXEditSimple.x64" (ByVal errorcode As Integer, ByVal buf() As Byte, ByVal maxlen As Integer) As Integer
-	Public Declare Function PXCV_Err_FormatErrorCode Lib "PDFXEditSimple.x64" (ByVal errorcode As Integer, ByVal buf() As Byte, ByVal maxlen As Integer) As Integer
+	Private Const DLLName As String = "PDFXEditSimple.x64.dll"
 #Else
-	Public Declare Function PXCV_Init Lib "PDFXEditSimple.x86" (ByRef Doc As Integer, ByVal Key As String, ByVal DevCode As String) As Integer
-	' Deinitialize PDF Object
-	Public Declare Function PXCV_Delete Lib "PDFXEditSimple.x86" (ByVal Doc As Integer) As Integer
-	' Set callback function
-	Public Declare Function PXCV_SetCallBack Lib "PDFXEditSimple.x86" (ByVal Doc As Integer, ByVal pProc As Integer, ByVal UserData As Integer) As Integer
-	' Read document
-	Public Declare Function PXCV_ReadDocumentW Lib "PDFXEditSimple.x86" (ByVal Doc As Integer, <MarshalAs(UnmanagedType.LPWStr)> ByVal fname As String, ByVal flags As Integer) As Integer
-	' Check the password for encrypted document
-	Public Declare Function PXCV_CheckPassword Lib "PDFXEditSimple.x86" (ByVal Doc As Integer, ByVal password() As Byte, ByVal passlen As Integer) As Integer
-	' Continue reading document after checking password
-	Public Declare Function PXCV_FinishReadDocument Lib "PDFXEditSimple.x86" (ByVal Doc As Integer, ByVal flags As Integer) As Integer
-
-	Public Declare Function PXCV_GetPagesCount Lib "PDFXEditSimple.x86" (ByVal Doc As Integer, ByRef count As Integer) As Integer
-
-	Public Declare Function PXCV_GetPageDimensions Lib "PDFXEditSimple.x86" (ByVal Doc As Integer, ByVal page_num As Integer, ByRef width As Double, ByRef height As Double) As Integer
-
-	Public Declare Function PXCV_GetPageRotation Lib "PDFXEditSimple.x86" (ByVal Doc As Integer, ByVal page_num As Integer, ByRef angle As Integer) As Integer
-
-	Public Declare Function PXCV_DrawPageToDC Lib "PDFXEditSimple.x86" (ByVal Doc As Integer, ByVal page_num As Integer, ByVal hdc As IntPtr, ByRef parameters As PXV_CommonRenderParameters) As Integer
-
-	Public Declare Function PXCV_DrawPageToDIBSection Lib "PDFXEditSimple.x86" (ByVal Doc As Integer, ByVal page_num As Integer, ByRef parameters As PXV_CommonRenderParameters, ByVal hBaseDC As Integer, ByVal backcolor As Integer, ByRef pResDIBSection As Integer, ByVal hSection As Integer, ByVal dwOffset As Integer) As Integer
-
-	Public Declare Function PXCV_ReleasePageCachedData Lib "PDFXEditSimple.x86" (ByVal Doc As Integer, ByVal page_num As Integer, ByVal flags As Integer) As Integer
-
-	Public Declare Function PXCV_ReleaseCachedData Lib "PDFXEditSimple.x86" (ByVal Doc As Integer, ByVal flags As Integer) As Integer
-	' Error descriptions API
-	Public Declare Function PXCV_Err_FormatSeverity Lib "PDFXEditSimple.x86" (ByVal errorcode As Integer, ByVal buf() As Byte, ByVal maxlen As Integer) As Integer
-	Public Declare Function PXCV_Err_FormatFacility Lib "PDFXEditSimple.x86" (ByVal errorcode As Integer, ByVal buf() As Byte, ByVal maxlen As Integer) As Integer
-	Public Declare Function PXCV_Err_FormatErrorCode Lib "PDFXEditSimple.x86" (ByVal errorcode As Integer, ByVal buf() As Byte, ByVal maxlen As Integer) As Integer
+	Private Const DLLName As String = "PDFXEditSimple.x86.dll"
 #End If
 
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_Init(ByRef Doc As IntPtr, Key As String, DevCode As String) As Integer
+	End Function
+	' Deinitialize PDF Object
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_Delete(ByVal Doc As IntPtr) As Integer
+	End Function
+	' Set callback function
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_SetCallBack(ByVal Doc As IntPtr, ByVal pProc As IntPtr, ByVal UserData As IntPtr) As Integer
+	End Function
 
-End Class
+	' Read document
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_ReadDocumentW(ByVal Doc As IntPtr, <MarshalAs(UnmanagedType.LPWStr)> ByVal fname As String, ByVal flags As Integer) As Integer
+	End Function
+	' Check the password for encrypted document
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_CheckPassword(ByVal Doc As IntPtr, ByVal password() As Byte, ByVal passlen As Integer) As Integer
+	End Function
+	' Continue reading document after checking password
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_FinishReadDocument(ByVal Doc As IntPtr, ByVal flags As Integer) As Integer
+	End Function
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_GetPagesCount(ByVal Doc As IntPtr, ByRef count As Integer) As Integer
+	End Function
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_GetPageDimensions(ByVal Doc As IntPtr, ByVal page_num As Integer, ByRef width As Double, ByRef height As Double) As Integer
+	End Function
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_GetPageRotation(ByVal Doc As IntPtr, ByVal page_num As Integer, ByRef angle As Integer) As Integer
+	End Function
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_DrawPageToDC(ByVal Doc As IntPtr, ByVal page_num As Integer, ByVal hdc As IntPtr, ByRef parameters As PXV_CommonRenderParameters) As Integer
+	End Function
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_DrawPageToDIBSection(ByVal Doc As IntPtr, ByVal page_num As Integer, ByRef parameters As PXV_CommonRenderParameters, ByVal hBaseDC As IntPtr, ByVal backcolor As Integer, ByRef pResDIBSection As IntPtr, ByVal hSection As IntPtr, ByVal dwOffset As Integer) As Integer
+	End Function
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_ReleasePageCachedData(ByVal Doc As IntPtr, ByVal page_num As Integer, ByVal flags As Integer) As Integer
+	End Function
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_ReleaseCachedData(ByVal Doc As IntPtr, ByVal flags As Integer) As Integer
+	End Function
+	' Error descriptions API
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_Err_FormatSeverity(ByVal errorcode As Integer, ByVal buf() As Byte, ByVal maxlen As Integer) As Integer
+	End Function
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_Err_FormatFacility(ByVal errorcode As Integer, ByVal buf() As Byte, ByVal maxlen As Integer) As Integer
+	End Function
+	<DllImport(DLLName, CharSet:=CharSet.Auto)>
+	Public Function PXCV_Err_FormatErrorCode(ByVal errorcode As Integer, ByVal buf() As Byte, ByVal maxlen As Integer) As Integer
+	End Function
+
+End Module

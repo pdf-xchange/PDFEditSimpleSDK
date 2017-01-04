@@ -8,12 +8,9 @@ namespace PDFXEditSimpleLib
 	public class PDFXEdit
 	{
 
-#if X86
-		private const string DLLName = "PDFXEditSimple.x86.dll";
-#elif X64
-		private const string DLLName  = "PDFXEditSimple.x64.dll";
+#if AMD64
+		private const string DLLName = "PDFXEditSimple.x64.dll";
 #else
-		//#error "Please add X86/X64 to the preprocessor flags"
 		private const string DLLName = "PDFXEditSimple.x86.dll";
 #endif
 
@@ -60,7 +57,7 @@ namespace PDFXEditSimpleLib
 			pxvrpf_Rotate_RotateMask		=	0x0003,
 			pxvrpf_UseVectorRenderer		=	0x0004,
 		};
-		
+
 		[DllImport(DLLName)]
 		public static extern int PXCV_Init(out IntPtr hDoc, string Key, string DevCode);
 		// Deinitialize PDF Object

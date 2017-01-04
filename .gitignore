@@ -1,0 +1,6 @@
+/Examples/C#Examples/PDFXEditSimple/bin
+/Examples/C#Examples/PDFXEditSimple/obj
+/Examples/VBNetExamples/PDFXEditSimple/bin 
+/Examples/VBNetExamples/PDFXEditSimple/obj
+*.vs
+*.user

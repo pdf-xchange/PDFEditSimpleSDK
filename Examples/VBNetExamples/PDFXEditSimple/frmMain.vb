@@ -2,8 +2,8 @@ Imports System.Runtime.InteropServices
 
 Public Class frmMain
 
-    Private m_Doc As Integer
-    Private m_Page As Integer
+	Private m_Doc As IntPtr
+	Private m_Page As Integer
     Private m_PagesCount As Integer
     Private m_DCX As Integer
     Private m_DCY As Integer
@@ -89,8 +89,8 @@ Public Class frmMain
         If (DialogResult.OK = openDlg.ShowDialog()) Then
             fname = openDlg.FileName
             ClosePDF()
-            res = PXCE_Lib.PXCV_Init(m_Doc, "", "")
-            If (PXCE_Errors.IS_DS_FAILED(res)) Then
+			res = PXCE_Lib.PXCV_Init(m_Doc, (""), "")
+			If (PXCE_Errors.IS_DS_FAILED(res)) Then
                 PXCE_Errors.ShowDSError(res)
                 Exit Sub
             End If
