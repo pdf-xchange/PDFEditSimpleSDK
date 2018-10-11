@@ -54,61 +54,61 @@ namespace PDFXEditSimple
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.btnOK = new System.Windows.Forms.Button();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.groupBox1.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// btnOK
-			// 
-			this.btnOK.Location = new System.Drawing.Point(189, 88);
-			this.btnOK.Name = "btnOK";
-			this.btnOK.Size = new System.Drawing.Size(75, 23);
-			this.btnOK.TabIndex = 2;
-			this.btnOK.Text = "OK";
-			this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-			// 
-			// groupBox1
-			// 
-			this.groupBox1.Controls.Add(this.label2);
-			this.groupBox1.Controls.Add(this.label1);
-			this.groupBox1.Location = new System.Drawing.Point(5, 0);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(259, 82);
-			this.groupBox1.TabIndex = 4;
-			this.groupBox1.TabStop = false;
-			// 
-			// label2
-			// 
-			this.label2.Location = new System.Drawing.Point(9, 40);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(248, 16);
-			this.label2.TabIndex = 3;
-			this.label2.Text = "Copyright © 2001-2016 by Tracker Software Ltd.";
-			// 
-			// label1
-			// 
-			this.label1.Location = new System.Drawing.Point(8, 16);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(251, 24);
-			this.label1.TabIndex = 2;
-			this.label1.Text = "PDF-XChange Editor Simple SDK C# Demo Sample";
-			// 
-			// frmAbout
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(274, 127);
-			this.Controls.Add(this.groupBox1);
-			this.Controls.Add(this.btnOK);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-			this.MaximizeBox = false;
-			this.Name = "frmAbout";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "About...";
-			this.groupBox1.ResumeLayout(false);
-			this.ResumeLayout(false);
+            this.btnOK = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(302, 129);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(120, 33);
+            this.btnOK.TabIndex = 2;
+            this.btnOK.Text = "OK";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(8, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(414, 120);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(14, 58);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(397, 24);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Copyright © 2001-2018 by Tracker Software Ltd.";
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(13, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(401, 35);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "PDF-XChange Editor Simple SDK C# Demo Sample";
+            // 
+            // frmAbout
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(8, 19);
+            this.ClientSize = new System.Drawing.Size(432, 127);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnOK);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "frmAbout";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "About...";
+            this.groupBox1.ResumeLayout(false);
+            this.ResumeLayout(false);
 
 		}
 		#endregion

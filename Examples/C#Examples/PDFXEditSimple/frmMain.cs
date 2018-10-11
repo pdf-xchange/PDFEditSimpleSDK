@@ -33,6 +33,8 @@ namespace PDFXEditSimple
                 return;
 
             PageDimension aPageDim;
+            aPageDim.w = 0;
+            aPageDim.h = 0;
             Graphics aGraphics = this.pdfViewCtl1.CreateGraphics();
             Size aControlSize;
             double aZoom = this.pdfViewCtl1.Zoom;
@@ -40,7 +42,14 @@ namespace PDFXEditSimple
             try
             {
                 aControlSize = this.pdfViewCtl1.ClientSize;
-                m_PDFDoc.GetPageDimensions(m_PageNumber, out aPageDim.w, out aPageDim.h);
+                try
+                {
+                    m_PDFDoc.GetPageDimensions(m_PageNumber, out aPageDim.w, out aPageDim.h);
+                }
+                catch (ApplicationException e)
+                {
+                    Console.WriteLine(e.Message);
+                };
                 this.hScrollBar1.Minimum = 0;
                 this.vScrollBar1.Minimum = 0;
                 this.hScrollBar1.Maximum = (int)Math.Max(0, aPageDim.w * aGraphics.DpiX / 72.0 * aZoom - aControlSize.Width);
@@ -148,7 +157,7 @@ namespace PDFXEditSimple
         {
             DlgOpenURL aDlg = new DlgOpenURL();
 
-            aDlg.URL = "http://files.docu-track.com/WhichToolkit.pdf";
+            aDlg.URL = "https://help.tracker-software.com/pdfxessdk7/EditorSimpleSDK_MAN.pdf";
             if (aDlg.ShowDialog() == DialogResult.OK)
             {
                 WinHttp.WinHttpRequest aRequest = new WinHttp.WinHttpRequest();

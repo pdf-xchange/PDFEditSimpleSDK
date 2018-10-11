@@ -2,8 +2,8 @@ Imports System.Runtime.InteropServices
 
 Public Class frmMain
 
-	Private m_Doc As IntPtr
-	Private m_Page As Integer
+    Private m_Doc As IntPtr
+    Private m_Page As Integer
     Private m_PagesCount As Integer
     Private m_DCX As Integer
     Private m_DCY As Integer
@@ -16,13 +16,13 @@ Public Class frmMain
     Private m_BgBrush As SolidBrush
     Private m_bInit As Boolean
 
-    Private m_Parameters As PXCE_Lib.PXV_CommonRenderParameters = _
+    Private m_Parameters As PXCE_Lib.PXV_CommonRenderParameters =
          New PXCE_Lib.PXV_CommonRenderParameters()
 
     Private m_PrintedPageCount As Integer
     Private m_PagesCountToPrint As Integer
 
-    Private WithEvents m_DocToPrint As System.Drawing.Printing.PrintDocument = _
+    Private WithEvents m_DocToPrint As System.Drawing.Printing.PrintDocument =
             New System.Drawing.Printing.PrintDocument()
 
 
@@ -89,8 +89,8 @@ Public Class frmMain
         If (DialogResult.OK = openDlg.ShowDialog()) Then
             fname = openDlg.FileName
             ClosePDF()
-			res = PXCE_Lib.PXCV_Init(m_Doc, (""), "")
-			If (PXCE_Errors.IS_DS_FAILED(res)) Then
+            res = PXCE_Lib.PXCV_Init(m_Doc, (""), "")
+            If (PXCE_Errors.IS_DS_FAILED(res)) Then
                 PXCE_Errors.ShowDSError(res)
                 Exit Sub
             End If
@@ -203,7 +203,7 @@ Public Class frmMain
 
     Private Sub ReleasePage(ByVal page As Integer)
         If (page <> m_Page) Then
-            PXCE_Lib.PXCV_ReleasePageCachedData(m_Doc, m_Page, _
+            PXCE_Lib.PXCV_ReleasePageCachedData(m_Doc, m_Page,
                 CInt(PXCE_Lib.PXCV_ReleaseCachedDataFlags.pxvrcd_ReleaseDocumentImages))
         End If
     End Sub
@@ -218,7 +218,7 @@ Public Class frmMain
 
     Protected Overrides Sub OnPaint(ByVal e As PaintEventArgs)
         If (m_Doc <> 0) Then
-            e.Graphics.FillRectangle(m_BgBrush, 0, 20, Me.Width - vScrollBar.Width - 8, _
+            e.Graphics.FillRectangle(m_BgBrush, 0, 20, Me.Width - vScrollBar.Width - 8,
                 Me.Height - hScrollBar.Height - 49)
             ShowPDF()
         Else
@@ -434,5 +434,5 @@ Public Class frmMain
         PrintPdfFile(Me.Handle)
     End Sub
 
-    
+
 End Class

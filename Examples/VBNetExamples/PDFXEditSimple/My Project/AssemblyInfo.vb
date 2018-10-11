@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("PXCView36")> 
+<Assembly: AssemblyTitle("pdfxessdk7")>
 <Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Dreamsoft")> 
-<Assembly: AssemblyProduct("PXCView36")> 
-<Assembly: AssemblyCopyright("Copyright © Dreamsoft 2006")> 
+<Assembly: AssemblyCompany("Dreamsoft")>
+<Assembly: AssemblyProduct("pdfxessdk7")>
+<Assembly: AssemblyCopyright("Copyright © Dreamsoft 2018")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>

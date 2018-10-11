@@ -4,3 +4,10 @@
 /Examples/VBNetExamples/PDFXEditSimple/obj
 *.vs
 *.user
+/Bin
+/Examples/CExamples/PDFXEditSimple_app/Debug
+/Examples/CExamples/PDFXEditSimple_app/Win32/Debug
+/lib
+/Examples/CExamples/PDFXEditSimple_app/Win32/Release
+/Examples/CExamples/PDFXEditSimple_app/x64/Release
+/Examples/CExamples/PDFXEditSimple_app/Release
