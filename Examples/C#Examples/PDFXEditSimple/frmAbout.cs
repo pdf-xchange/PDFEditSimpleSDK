@@ -86,7 +86,7 @@ namespace PDFXEditSimple
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(397, 24);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Copyright © 2001-2018 by Tracker Software Ltd.";
+            this.label2.Text = "Copyright © 2001-2021 by Tracker Software Ltd.";
             // 
             // label1
             // 
