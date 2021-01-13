@@ -28,12 +28,12 @@ LONG yDPI = 0;
 DWORD curPage = 0;
 DWORD pagesCount = 0;
 double zoom = 100; // zom factor in percents
-PXVDocument curDoc = NULL;
+PXVDocument curDoc = nullptr;
 RECT borders = {5, 5, 5, 5};
 
-HWND hStatusBar = 0;
-HWND hMain = 0;
-HWND hView = 0;
+HWND hStatusBar = nullptr;
+HWND hMain = nullptr;
+HWND hView = nullptr;
 
 CHAR password[256];
 DWORD pass_len = 0;
@@ -208,7 +208,7 @@ void doPaint(HWND hWnd)
 	if (!::GetClientRect(hWnd, &rcClient))
 		return;
 
-	RGNDATA *pRgnData = NULL;
+	RGNDATA *pRgnData = nullptr;
 	do
 	{
 		RECT rcUpdate = {0,0,0,0};
@@ -217,7 +217,7 @@ void doPaint(HWND hWnd)
 		int nReg = ::GetUpdateRgn(hWnd, hRgnUpdate, FALSE);
 		if (nReg == COMPLEXREGION)
 		{
-			DWORD cbRgnData = ::GetRegionData(hRgnUpdate, 0, NULL);
+			DWORD cbRgnData = ::GetRegionData(hRgnUpdate, 0, nullptr);
 			if (cbRgnData == 0)
 				break;
 			pRgnData = (RGNDATA*)new BYTE[cbRgnData];
@@ -235,18 +235,18 @@ void doPaint(HWND hWnd)
 				DrawRect(dc, rects[i], rcClient);
 			}
 		}
-		else 
+		else
 		{
 			if (::IsRectEmpty(&rcUpdate))
 				rcUpdate = rcClient;
-			else 
+			else
 				::IntersectRect(&rcUpdate, &rcClient, &rcUpdate);
 			DrawRect(dc, rcUpdate, rcClient);
 		}
 		EndPaint(hWnd, &ps);
 	}
-	while(FALSE);
-	if (pRgnData != NULL)
+	while(false);
+	if (pRgnData != nullptr)
 		delete[] pRgnData;
 }
 
@@ -266,14 +266,14 @@ LRESULT CALLBACK	ChildWndProc(HWND, UINT, WPARAM, LPARAM);
 int CALLBACK		PasswordDlg(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
-                     HINSTANCE hPrevInstance,
-                     LPTSTR    lpCmdLine,
-                     int       nCmdShow)
+					 HINSTANCE hPrevInstance,
+					 LPTSTR    lpCmdLine,
+					 int       nCmdShow)
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
- 	InitCommonControls();
+	InitCommonControls();
 	//
 	MSG msg;
 	HACCEL hAccelTable;
@@ -294,7 +294,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_PXCVIEW36_SAMPLE_APP));
 
 	// Main message loop:
-	while (GetMessage(&msg, NULL, 0, 0))
+	while (GetMessage(&msg, nullptr, 0, 0))
 	{
 		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
 		{
@@ -333,7 +333,7 @@ ATOM RegisterMainClass(HINSTANCE hInstance)
 	wcex.cbWndExtra		= 0;
 	wcex.hInstance		= hInstance;
 	wcex.hIcon			= LoadIconW(hInstance, MAKEINTRESOURCEW(IDI_PXCVIEW36_SAMPLE_APP));
-	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
+	wcex.hCursor		= LoadCursor(nullptr, IDC_ARROW);
 	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
 	wcex.lpszMenuName	= MAKEINTRESOURCEW(IDC_PXCVIEW36_SAMPLE_APP);
 	wcex.lpszClassName	= szMainWindowClass;
@@ -354,11 +354,11 @@ ATOM RegisterChildClass(HINSTANCE hInstance)
 	wcex.cbWndExtra		= 0;
 	wcex.hInstance		= hInstance;
 	wcex.hIcon			= LoadIconW(hInstance, MAKEINTRESOURCEW(IDI_PXCVIEW36_SAMPLE_APP));
-	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
+	wcex.hCursor		= LoadCursor(nullptr, IDC_ARROW);
 	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
-	wcex.lpszMenuName	= NULL;
+	wcex.lpszMenuName	= nullptr;
 	wcex.lpszClassName	= szChildWindowClass;
-	wcex.hIconSm		= NULL;
+	wcex.hIconSm		= nullptr;
 
 	return RegisterClassExW(&wcex);
 }
@@ -377,7 +377,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
 	hInst = hInstance; // Store instance handle in our global variable
 	hMain = CreateWindowExW(0, szMainWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
+		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
 	if (!hMain)
 	{
@@ -387,8 +387,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	hStatusBar = CreateStatusWindowW(WS_CHILD | WS_VISIBLE | CCS_BOTTOM,
 		L"Ready", hMain, 0);
 	hView = CreateWindowExW(0, szChildWindowClass, szTitle, WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL,
-		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, hMain, NULL, hInstance, NULL);
-	
+		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, hMain, nullptr, hInstance, nullptr);
+
 	HDC dc = GetWindowDC(hMain);
 	xDPI = GetDeviceCaps(dc, LOGPIXELSX);
 	yDPI = GetDeviceCaps(dc, LOGPIXELSY);
@@ -428,7 +428,7 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 			if (OpenPdfFile(hWnd))
 			{
 				mSetScrollInfo(hView, FALSE);
-				InvalidateRect(hView, NULL, FALSE);
+				InvalidateRect(hView, nullptr, FALSE);
 				UpdateWindow(hView);
 			}
 			break;
@@ -439,7 +439,7 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 			if (ClosePdfFile())
 			{
 				mSetScrollInfo(hView, FALSE);
-				InvalidateRect(hView, NULL, FALSE);
+				InvalidateRect(hView, nullptr, FALSE);
 				UpdateWindow(hView);
 			}
 			break;
@@ -449,7 +449,7 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 			if (ChangeZoom(wmId))
 			{
 				mSetScrollInfo(hView, FALSE);
-				InvalidateRect(hView, NULL, FALSE);
+				InvalidateRect(hView, nullptr, FALSE);
 				UpdateWindow(hView);
 			}
 			break;
@@ -460,7 +460,7 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 			if (ChangePage(wmId))
 			{
 				mSetScrollInfo(hView, FALSE);
-				InvalidateRect(hView, NULL, FALSE);
+				InvalidateRect(hView, nullptr, FALSE);
 				UpdateWindow(hView);
 			}
 			break;
@@ -510,114 +510,114 @@ LRESULT CALLBACK ChildWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 		}
 		break;
    case WM_HSCROLL:
-         // Get all the vertial scroll bar information
-         si.cbSize = sizeof (si);
-         si.fMask  = SIF_ALL;
-         // Save the position for comparison later on
+		 // Get all the vertial scroll bar information
+		 si.cbSize = sizeof (si);
+		 si.fMask  = SIF_ALL;
+		 // Save the position for comparison later on
 		 GetScrollInfo (hWnd, SB_HORZ, &si);
-         xPos = si.nPos;
-         switch (LOWORD (wParam))
-         {
-         // user clicked left arrow
-         case SB_LINELEFT: 
-              si.nPos -= 1;
-              break;
-              
-         // user clicked right arrow
-         case SB_LINERIGHT: 
-              si.nPos += 1;
-              break;
-              
-         // user clicked the scroll bar shaft left of the scroll box
-         case SB_PAGELEFT:
-              si.nPos -= si.nPage;
-              break;
-              
-         // user clicked the scroll bar shaft right of the scroll box
-         case SB_PAGERIGHT:
-              si.nPos += si.nPage;
-              break;
-              
-         // user dragged the scroll box
-         case SB_THUMBTRACK: 
-              si.nPos = si.nTrackPos;
-              break;
-              
-         default :
-              break;
-         }
-         // Set the position and then retrieve it.  Due to adjustments
-         //   by Windows it may not be the same as the value set.
-         si.fMask = SIF_POS;
+		 xPos = si.nPos;
+		 switch (LOWORD (wParam))
+		 {
+		 // user clicked left arrow
+		 case SB_LINELEFT:
+			  si.nPos -= 1;
+			  break;
+
+		 // user clicked right arrow
+		 case SB_LINERIGHT:
+			  si.nPos += 1;
+			  break;
+
+		 // user clicked the scroll bar shaft left of the scroll box
+		 case SB_PAGELEFT:
+			  si.nPos -= si.nPage;
+			  break;
+
+		 // user clicked the scroll bar shaft right of the scroll box
+		 case SB_PAGERIGHT:
+			  si.nPos += si.nPage;
+			  break;
+
+		 // user dragged the scroll box
+		 case SB_THUMBTRACK:
+			  si.nPos = si.nTrackPos;
+			  break;
+
+		 default :
+			  break;
+		 }
+		 // Set the position and then retrieve it.  Due to adjustments
+		 //   by Windows it may not be the same as the value set.
+		 si.fMask = SIF_POS;
 		 SetScrollInfo (hWnd, SB_HORZ, &si, TRUE);
 		 GetScrollInfo (hWnd, SB_HORZ, &si);
-         
-         // If the position has changed, scroll the window 
+
+		 // If the position has changed, scroll the window
 		 curXpos = si.nPos;
-         if (si.nPos != xPos)
-         {
-			ScrollWindow(hWnd, xPos - si.nPos, 0, NULL, NULL);
-         }
-         break;
+		 if (si.nPos != xPos)
+		 {
+			ScrollWindow(hWnd, xPos - si.nPos, 0, nullptr, nullptr);
+		 }
+		 break;
 	case WM_VSCROLL:
-         // Get all the vertial scroll bar information
-         si.cbSize = sizeof (si);
-         si.fMask  = SIF_ALL;
-         GetScrollInfo (hWnd, SB_VERT, &si);
-         // Save the position for comparison later on
-         yPos = si.nPos;
-         switch (LOWORD (wParam))
-         {
-         // user clicked the HOME keyboard key
-         case SB_TOP:
-              si.nPos = si.nMin;
-              break;
-              
-         // user clicked the END keyboard key
-         case SB_BOTTOM:
-              si.nPos = si.nMax;
-              break;
-              
-         // user clicked the top arrow
-         case SB_LINEUP:
-              si.nPos -= 1;
-              break;
-              
-         // user clicked the bottom arrow
-         case SB_LINEDOWN:
-              si.nPos += 1;
-              break;
-              
-         // user clicked the scroll bar shaft above the scroll box
-         case SB_PAGEUP:
-              si.nPos -= si.nPage;
-              break;
-              
-         // user clicked the scroll bar shaft below the scroll box
-         case SB_PAGEDOWN:
-              si.nPos += si.nPage;
-              break;
-              
-         // user dragged the scroll box
-         case SB_THUMBTRACK:
-              si.nPos = si.nTrackPos;
-              break;
-              
-         default:
-              break; 
-         }
-         // Set the position and then retrieve it.  Due to adjustments
-         //   by Windows it may not be the same as the value set.
-         si.fMask = SIF_POS;
-         SetScrollInfo (hWnd, SB_VERT, &si, TRUE);
-         GetScrollInfo (hWnd, SB_VERT, &si);
-         // If the position has changed, scroll window and update it
+		 // Get all the vertial scroll bar information
+		 si.cbSize = sizeof (si);
+		 si.fMask  = SIF_ALL;
+		 GetScrollInfo (hWnd, SB_VERT, &si);
+		 // Save the position for comparison later on
+		 yPos = si.nPos;
+		 switch (LOWORD (wParam))
+		 {
+		 // user clicked the HOME keyboard key
+		 case SB_TOP:
+			  si.nPos = si.nMin;
+			  break;
+
+		 // user clicked the END keyboard key
+		 case SB_BOTTOM:
+			  si.nPos = si.nMax;
+			  break;
+
+		 // user clicked the top arrow
+		 case SB_LINEUP:
+			  si.nPos -= 1;
+			  break;
+
+		 // user clicked the bottom arrow
+		 case SB_LINEDOWN:
+			  si.nPos += 1;
+			  break;
+
+		 // user clicked the scroll bar shaft above the scroll box
+		 case SB_PAGEUP:
+			  si.nPos -= si.nPage;
+			  break;
+
+		 // user clicked the scroll bar shaft below the scroll box
+		 case SB_PAGEDOWN:
+			  si.nPos += si.nPage;
+			  break;
+
+		 // user dragged the scroll box
+		 case SB_THUMBTRACK:
+			  si.nPos = si.nTrackPos;
+			  break;
+
+		 default:
+			  break;
+		 }
+		 // Set the position and then retrieve it.  Due to adjustments
+		 //   by Windows it may not be the same as the value set.
+		 si.fMask = SIF_POS;
+		 SetScrollInfo (hWnd, SB_VERT, &si, TRUE);
+		 GetScrollInfo (hWnd, SB_VERT, &si);
+		 // If the position has changed, scroll window and update it
 		 curYpos = si.nPos;
-         if (si.nPos != yPos)
-         {                    
-			ScrollWindow(hWnd, 0, yPos - si.nPos, NULL, NULL);
+		 if (si.nPos != yPos)
+		 {
+			ScrollWindow(hWnd, 0, yPos - si.nPos, nullptr, nullptr);
 			UpdateWindow (hWnd);
-         }
+		 }
 		 break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
@@ -684,7 +684,7 @@ void HandleSettingsChanged()
 
 BOOL ChangeZoom(int wmId)
 {
-	if (curDoc == NULL)
+	if (curDoc == nullptr)
 		return FALSE;
 	double new_zoom = zoom;
 	switch (wmId)
@@ -712,7 +712,7 @@ BOOL ChangeZoom(int wmId)
 
 BOOL ChangePage(int wmId)
 {
-	if (curDoc == NULL)
+	if (curDoc == nullptr)
 		return FALSE;
 	DWORD current_page = curPage;
 	switch (wmId)
@@ -745,12 +745,12 @@ BOOL OpenPdfFile(HWND hWnd)
 	WCHAR fname[MAX_PATH + 1] = {0};
 	OPENFILENAMEW ofn = {sizeof(OPENFILENAMEW)};
 	ofn.hwndOwner = hWnd;
-	ofn.lpstrFilter = L"PDF File (*.pdf)\0*.pdf\0\0"; 
-	ofn.lpstrFile = fname; 
-	ofn.nMaxFile = MAX_PATH; 
-	ofn.lpstrTitle = L"Select PDF file"; 
+	ofn.lpstrFilter = L"PDF File (*.pdf)\0*.pdf\0\0";
+	ofn.lpstrFile = fname;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.lpstrTitle = L"Select PDF file";
 	ofn.Flags = OFN_ENABLESIZING | OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES;
-	ofn.lpstrDefExt = L"pdf"; 
+	ofn.lpstrDefExt = L"pdf";
 	if (!::GetOpenFileNameW(&ofn))
 		return FALSE;
 	ClosePdfFile();
@@ -758,14 +758,14 @@ BOOL OpenPdfFile(HWND hWnd)
 	BOOL bShowError = TRUE;
 	do
 	{
-		hr = PXCV_Init(&curDoc, NULL, NULL);
+		hr = PXCV_Init(&curDoc, nullptr, nullptr);
 		if (FAILED(hr))
 			break;
 		hr = PXCV_ReadDocumentW(curDoc, fname, 0);
 		if (hr == PS40_ERR_DocEncrypted)
 		{
 			// ask password
-			while (TRUE)
+			while (true)
 			{
 				pass_len = 0;
 				DialogBoxW(hInst, MAKEINTRESOURCEW(IDD_PASSWORD_DLG), hWnd, (DLGPROC)PasswordDlg);
@@ -796,22 +796,22 @@ BOOL OpenPdfFile(HWND hWnd)
 		zoom = 100;
 		HandleSettingsChanged();
 	}
-	while (FALSE);
+	while (false);
 	if (FAILED(hr))
 	{
 		PXCV_Delete(curDoc);
-		curDoc = NULL;
+		curDoc = nullptr;
 		if (bShowError)
 		{
 			// Show error description
-			LONG sev_len = PXCV_Err_FormatSeverity(hr, NULL, 0);
-			LONG fac_len = PXCV_Err_FormatFacility(hr, NULL, 0);
-			LONG cod_len = PXCV_Err_FormatErrorCode(hr, NULL, 0);
+			LONG sev_len = PXCV_Err_FormatSeverity(hr, nullptr, 0);
+			LONG fac_len = PXCV_Err_FormatFacility(hr, nullptr, 0);
+			LONG cod_len = PXCV_Err_FormatErrorCode(hr, nullptr, 0);
 			if ((sev_len > 0) && (fac_len > 0) && (cod_len > 0))
 			{
 				LONG bs = sev_len + fac_len + cod_len + 5;
 				CHAR* buf = new CHAR[bs];
-				if (buf == NULL)
+				if (buf == nullptr)
 				{
 					WCHAR lbuf[128];
 					wsprintfW(lbuf, L"Error allocating %d bytes", bs);
@@ -852,11 +852,11 @@ BOOL OpenPdfFile(HWND hWnd)
 
 BOOL ClosePdfFile()
 {
-	if (curDoc != NULL)
+	if (curDoc != nullptr)
 	{
 		PXCV_Delete(curDoc);
 		curPage = 0;
-		curDoc = NULL;
+		curDoc = nullptr;
 		pixPageHeigth = pixPageWidth = -1;
 		::SetWindowTextW(hMain, szTitle);
 		return TRUE;
@@ -876,7 +876,7 @@ void MakeProp(LONG& w, LONG& h, LONG ppage_w, LONG ppage_h, double dpage_w, doub
 
 void PrintPdfFile(HWND hParentWnd)
 {
-	if (curDoc == NULL)
+	if (curDoc == nullptr)
 		return;
 	DWORD pagescount = 0;
 	HRESULT hr = PXCV_GetPagesCount(curDoc, &pagescount);
@@ -902,7 +902,6 @@ void PrintPdfFile(HWND hParentWnd)
 	}
 	nStartPage--;
 	nEndPage--;
-	size_t i;
 
 	DOCINFO di = {sizeof(DOCINFO)};
 	di.lpszDocName = _T("PXC-View PDF Print");
@@ -926,12 +925,12 @@ void PrintPdfFile(HWND hParentWnd)
 	BOOL bRotated = (physicalSize.cx > physicalSize.cy);
 	crp.Flags = pxvrpf_UseVectorRenderer;
 	crp.RenderTarget = pxvrm_Printing;
-	crp.DrawRect = NULL;
+	crp.DrawRect = nullptr;
 	//
 	if (::StartDoc(pdlg.hDC, &di) > 0)
 	{
 
-		for (i = nStartPage; i <= nEndPage; i++)
+		for (DWORD i = (DWORD)nStartPage; i <= (DWORD)nEndPage; i++)
 		{
 			::StartPage(pdlg.hDC);
 			//
