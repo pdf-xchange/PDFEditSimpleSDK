@@ -27,7 +27,7 @@ Public Class frmAbout
     Private components As System.ComponentModel.IContainer
 
     'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
+    'It can be modified using the Windows Form Designer.
     'Do not modify it using the code editor.
     Friend WithEvents groupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents label2 As System.Windows.Forms.Label
@@ -57,7 +57,7 @@ Public Class frmAbout
         Me.label2.Name = "label2"
         Me.label2.Size = New System.Drawing.Size(397, 24)
         Me.label2.TabIndex = 3
-        Me.label2.Text = "Copyright © 2001-2018 by Tracker Software Ltd."
+        Me.label2.Text = "Copyright © 2001-2021 by Tracker Software Ltd."
         '
         'label1
         '
