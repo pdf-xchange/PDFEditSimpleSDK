@@ -22,7 +22,7 @@ Begin VB.Form AboutDlg
       Width           =   1335
    End
    Begin VB.Label Label2 
-      Caption         =   "Copyright © 2001-2016 by Tracker Software Ltd."
+      Caption         =   "Copyright © 2001-2021 by Tracker Software Ltd."
       Height          =   255
       Left            =   120
       TabIndex        =   2
