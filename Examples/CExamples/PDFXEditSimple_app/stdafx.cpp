@@ -7,9 +7,9 @@
 // TODO: reference any additional headers you need in STDAFX.H
 // and not in this file
 #if defined(_M_AMD64)
-#pragma comment(lib, "PDFXEditSimple.x64.lib")
+#pragma comment(lib, "PXCEditorSimple.x64.lib")
 #else
-#pragma comment(lib, "PDFXEditSimple.x86.lib")
+#pragma comment(lib, "PXCEditorSimple.x86.lib")
 #endif
 
 #pragma comment(lib, "comctl32.lib")

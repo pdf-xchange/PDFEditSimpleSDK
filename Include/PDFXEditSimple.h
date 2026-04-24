@@ -81,6 +81,7 @@ enum PXV_CommonRenderParametersFlags
 	//
 	pxvrpf_BlackAndWhite			=	0x0080,		// for drawtodc: result will be black-and-white
 	pxvrpf_Dither					=	0x0100,		// use dithering or not; has meaning only with pxvrpf_BlackAndWhite
+	pxvrpf_ForceRenderAsColor		=	0x0200,
 };
 
 enum PXV_DrawToImageFlags

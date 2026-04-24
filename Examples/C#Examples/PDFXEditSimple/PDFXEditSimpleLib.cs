@@ -9,9 +9,9 @@ namespace PDFXEditSimpleLib
 	{
 
 #if AMD64
-		private const string DLLName = "PDFXEditSimple.x64.dll";
+		private const string DLLName = "PXCEditorSimple.x64.dll";
 #else
-		private const string DLLName = "PDFXEditSimple.x86.dll";
+        private const string DLLName = "PXCEditorSimple.x86.dll";
 #endif
 
 		public delegate bool PXV36_CALLBACK_FUNC(int stage, int level, int param);

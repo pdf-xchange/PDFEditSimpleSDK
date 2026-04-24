@@ -38,9 +38,9 @@ Module PXCE_Lib
 	End Structure
 
 #If Win64 Then
-	Private Const DLLName As String = "PDFXEditSimple.x64.dll"
+	Private Const DLLName As String = "PXCEditorSimple.x64.dll"
 #Else
-	Private Const DLLName As String = "PDFXEditSimple.x86.dll"
+	Private Const DLLName As String = "PXCEditorSimple.x86.dll"
 #End If
 
 	<DllImport(DLLName, CharSet:=CharSet.Auto)>

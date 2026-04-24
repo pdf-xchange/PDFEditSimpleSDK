@@ -83,9 +83,9 @@ namespace PDFXEditSimple
             }
         }
 
-		private String sKey = "KEY";
+        private String sKey = "KEY";
 
-		private bool OpenPDF()
+        private bool OpenPDF()
         {
             if (DialogResult.OK != openDlg.ShowDialog(this))
                 return false;
@@ -94,7 +94,7 @@ namespace PDFXEditSimple
             try
             {
 
-				m_PDFDoc.Init(sKey, String.Empty);
+                m_PDFDoc.Init(sKey, String.Empty);
                 m_PDFDoc.Open(openDlg.FileName);
                 m_PageNumber = 0;
                 this.pdfViewCtl1.Attach(m_PDFDoc);
@@ -284,7 +284,7 @@ namespace PDFXEditSimple
         {
             int nPrintPageNum = m_PrintedPageCount;
 
-			PDFXEdit.PXV_CommonRenderParameters crp;
+            PDFXEdit.PXV_CommonRenderParameters crp;
             IntPtr hDC = IntPtr.Zero;
             PaperSize aPaperSize = e.PageSettings.PaperSize;
             double doc_page_w;
