@@ -60,9 +60,9 @@ Const
 	pxvrpf_RenderAsGray 				= 	$08;
 
 {$IFDEF WIN64}
-  Const DLLName = 'PDFXEditSimple.x64.dll';
+  Const DLLName = 'PXCEditorSimple.x64.dll';
 {$ELSE}
-  Const DLLName = 'PDFXEditSimple.x86.dll';
+  Const DLLName = 'PXCEditorSimple.x86.dll';
 {$ENDIF}
 
 	////////////////////////////////////////////////////////////////////////

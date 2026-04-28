@@ -3,12 +3,16 @@
         <ProjectGuid>{CE8B0FAB-A104-4D3A-9C67-18E6CD49EA6C}</ProjectGuid>
         <MainSource>PDFXEditSimpleDelphi.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <TargetedPlatforms>1027</TargetedPlatforms>
         <AppType>Application</AppType>
         <FrameworkType>VCL</FrameworkType>
         <ProjectVersion>18.0</ProjectVersion>
         <Platform Condition="'$(Platform)'==''">Win64</Platform>
+    </PropertyGroup>
+    <PropertyGroup>
+        <MyArch Condition="'$(Platform)'=='Win32'">x86</MyArch>
+        <MyArch Condition="'$(Platform)'=='Win64'">x64</MyArch>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -76,9 +80,9 @@
         <DCC_UnitSearchPath>..\..\..\Include;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_ExeOutput>..\..\..\Bin</DCC_ExeOutput>
+        <DCC_ExeOutput>..\..\..\bin.$(MyArch)</DCC_ExeOutput>
+        <DCC_DcuOutput>..\..\..\temp\$(MSBuildProjectName).$(Config).$(Platform)</DCC_DcuOutput>
         <DCC_K>false</DCC_K>
-        <DCC_DcuOutput>..\..\..\Temp</DCC_DcuOutput>
         <DCC_E>false</DCC_E>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <VerInfo_MinorVer>6</VerInfo_MinorVer>
